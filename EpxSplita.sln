@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EpxSplita", "EpxSplita\EpxSplita.csproj", "{A8F291D4-470B-45A9-B3CE-EF40B0CC4200}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuetModel", "GuetModel\GuetModel.csproj", "{CC6D9654-3E51-4A03-90CA-2CF89A80C1B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controls", "Controls\Controls.csproj", "{451B666C-B706-427F-9FFD-F392AC4FD590}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8F291D4-470B-45A9-B3CE-EF40B0CC4200}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8F291D4-470B-45A9-B3CE-EF40B0CC4200}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8F291D4-470B-45A9-B3CE-EF40B0CC4200}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8F291D4-470B-45A9-B3CE-EF40B0CC4200}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC6D9654-3E51-4A03-90CA-2CF89A80C1B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC6D9654-3E51-4A03-90CA-2CF89A80C1B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC6D9654-3E51-4A03-90CA-2CF89A80C1B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC6D9654-3E51-4A03-90CA-2CF89A80C1B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{451B666C-B706-427F-9FFD-F392AC4FD590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{451B666C-B706-427F-9FFD-F392AC4FD590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{451B666C-B706-427F-9FFD-F392AC4FD590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{451B666C-B706-427F-9FFD-F392AC4FD590}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

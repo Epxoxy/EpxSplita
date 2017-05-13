@@ -1,0 +1,50 @@
+﻿<Page x:Class="EpxSplita.SelectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:widget="http://encrypt5px.org"
+      xmlns:local="clr-namespace:EpxSplita"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="600"
+      Title="SelectPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="42"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Column="1" BorderThickness="0" 
+                      x:Name="datagrid"
+                      SelectionMode="Extended" SelectionUnit="FullRow"
+                      AlternationCount="2"  CanUserAddRows="False" 
+                      EnableRowVirtualization="True" EnableColumnVirtualization="True"
+                      VerticalGridLinesBrush="#d6c79b" HorizontalGridLinesBrush="#d6c79b"
+                      AutoGenerateColumns="True" ItemsSource="{Binding MyTable, IsAsync=True}" 
+                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                      RowHeaderStyle="{StaticResource DataGridRowHeaderStyle}"
+                      CellStyle="{StaticResource DataGridCellStyle}" >
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource DataGridRowStyle}" >
+                </Style>
+            </DataGrid.RowStyle>
+        </DataGrid>
+        <WrapPanel Orientation="Horizontal" Grid.Row="1">
+            <widget:ComboBox Margin="4" MinHeight="30" MinWidth="80"
+                             Style="{StaticResource PlaceHolderComboBoxStyle}"
+                             DisplayMemberPath="Display" PopupPlacement="Top" PopupThickness="1,1,1,0"
+                             SelectedValuePath="Value" ItemsSource="{Binding}">
+            </widget:ComboBox>
+            <widget:ComboBox Margin="4" MinHeight="30" MinWidth="80"
+                             Style="{StaticResource PlaceHolderComboBoxStyle}"
+                             DisplayMemberPath="Display" PopupPlacement="Top" PopupThickness="1,1,1,0"
+                             SelectedValuePath="Value" ItemsSource="{Binding}">
+            </widget:ComboBox>
+            <widget:ComboBox Margin="4" MinHeight="30" MinWidth="80"
+                             Style="{StaticResource PlaceHolderComboBoxStyle}"
+                             DisplayMemberPath="Display" PopupPlacement="Top" PopupThickness="1,1,1,0"
+                             SelectedValuePath="Value" ItemsSource="{Binding}">
+            </widget:ComboBox>
+        </WrapPanel>
+    </Grid>
+</Page>

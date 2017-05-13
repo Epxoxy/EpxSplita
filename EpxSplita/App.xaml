@@ -1,0 +1,26 @@
+﻿<Application x:Class="EpxSplita.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:EpxSplita"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/TitlebarStyle.xaml" />
+                <ResourceDictionary Source="Themes/TabStyle.xaml" />
+                <ResourceDictionary Source="Themes/DataGridStyle/CellStyle.xaml" />
+                <ResourceDictionary Source="Themes/DataGridStyle/ColumnHeaderStyle.xaml" />
+                <ResourceDictionary Source="Themes/DataGridStyle/RowHeaderStyle.xaml" />
+                <ResourceDictionary Source="Themes/DataGridStyle/RowStyle.xaml" />
+                <ResourceDictionary Source="Themes/ListBoxStyle.xaml" />
+                <ResourceDictionary Source="Themes/ListBoxItemStyle.xaml" />
+                <ResourceDictionary Source="Themes/ScrollViewerStyle.xaml" />
+                <ResourceDictionary Source="Themes/ToggleButtonStyle.xaml" />
+                <ResourceDictionary Source="Themes/BasicButtonStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="ScrollViewer">
+                <Setter Property="Template" Value="{StaticResource ScrollViewerControlTemplate1}"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

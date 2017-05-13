@@ -1,0 +1,106 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Controls"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:Boolean x:Key="Boolean.True">True</sys:Boolean>
+    <sys:Boolean x:Key="Boolean.False">False</sys:Boolean>
+    <Visibility x:Key="Visibility.Visible">Visible</Visibility>
+    <Visibility x:Key="Visibility.Collapsed">Collapsed</Visibility>
+    <Color x:Key="TransparentFill.Color" A="0" R="128" G="128" B="128" />
+    <Color x:Key="OpenFill.Color" A="85" R="128" G="128" B="128" />
+    <SolidColorBrush x:Key="OpenFill" Color="{StaticResource OpenFill.Color}" />
+    <SolidColorBrush x:Key="TransparentFill" Color="{StaticResource TransparentFill.Color}" />
+    <Style TargetType="{x:Type local:FlyoutControl}">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="OpenOrientation" Value="Horizontal" />
+        <Setter Property="FadeInFrom" Value="-60" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:FlyoutControl}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="FadeStates">
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Close" To="Open">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{StaticResource Visibility.Visible}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Transform" 
+                                                                   Storyboard.TargetProperty="X">
+                                                <DiscreteDoubleKeyFrame x:Name="TargetInX" KeyTime="00:00:00" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="00:00:00.30" Value="0">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Transform" 
+                                                                   Storyboard.TargetProperty="Y">
+                                                <DiscreteDoubleKeyFrame x:Name="TargetInY" KeyTime="00:00:00" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="00:00:00.30" Value="0">
+                                                    <EasingDoubleKeyFrame.EasingFunction>
+                                                        <CubicEase EasingMode="EaseOut" />
+                                                    </EasingDoubleKeyFrame.EasingFunction>
+                                                </EasingDoubleKeyFrame>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <ColorAnimation Storyboard.TargetName="DismissLayer" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                                            From="{StaticResource TransparentFill.Color}" 
+                                                            To="{StaticResource OpenFill.Color}" Duration="0:0:0.3"/>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                    <VisualTransition From="Open" To="Close">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
+                                                <DiscreteObjectKeyFrame KeyTime="00:00:00.35" Value="{StaticResource Visibility.Collapsed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Transform" 
+                                                                   Storyboard.TargetProperty="X">
+                                                <LinearDoubleKeyFrame x:Name="TargetOutX" KeyTime="00:00:00.35" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Transform" 
+                                                                   Storyboard.TargetProperty="Y">
+                                                <LinearDoubleKeyFrame x:Name="TargetOutY" KeyTime="00:00:00.35" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <ColorAnimation Storyboard.TargetName="DismissLayer" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)"
+                                                            To="{StaticResource TransparentFill.Color}" Duration="0:0:0.3"/>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.3"/>
+                                        </Storyboard>
+
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                                <VisualState x:Name="Open">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{StaticResource Visibility.Visible}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Close">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{StaticResource Visibility.Collapsed}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Rectangle x:Name="DismissLayer" Focusable="False" Fill="{StaticResource OpenFill}" />
+                        <Grid x:Name="PART_Content"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <Grid.RenderTransform>
+                                <TranslateTransform x:Name="Transform"/>
+                            </Grid.RenderTransform>
+                            <ContentPresenter />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,78 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--#region Control ToggleButton style, open or close some function-->
+    <Style x:Key="ButtonFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070"/>
+    <SolidColorBrush x:Key="ToggleButton.Checked.Fill" Color="#FFFF6868"/>
+    <SolidColorBrush x:Key="ToggleButton.MouseOver.Fill" Color="DimGray"/>
+    <Storyboard x:Key="SliderToggleButton_On">
+        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="SlideRectangle" BeginTime="0" Duration="0:0:0.05" To="6" />
+        <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="SlideRectangle" BeginTime="0:0:0.05" Duration="0:0:0.1" To="18" />
+    </Storyboard>
+    <Storyboard x:Key="SliderToggleButton_Off">
+        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="SlideRectangle">
+            <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="2"/>
+        </DoubleAnimationUsingKeyFrames>
+    </Storyboard>
+    <Style x:Key="SliderToggleButton" TargetType="{x:Type ToggleButton}">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="{StaticResource Common.Transparent}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Padding="{TemplateBinding Padding}" Margin="{TemplateBinding Margin}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="36" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="4,0" Content="{TemplateBinding Content}" TextBlock.FontSize="{TemplateBinding FontSize}"/>
+                            <Border Background="White" VerticalAlignment="Center" Padding="0,1"  Grid.Column="1" MaxHeight="12" Height="{Binding ActualHeight, ElementName=ButtonState}" x:Name="FillBorder" CornerRadius="6" BorderBrush="DimGray" BorderThickness="1" SnapsToDevicePixels="True" >
+                                <Canvas x:Name="canvas" Grid.Column="1" >
+                                    <Rectangle MinHeight="6" Height="{Binding ActualHeight, ElementName=canvas}" MinWidth="14" Canvas.Left="2" RadiusX="4" RadiusY="8" x:Name="SlideRectangle" Fill="DimGray"/>
+                                </Canvas>
+                            </Border>
+                            <TextBlock VerticalAlignment="Center" Margin="3,0,0,0" Width="24" Grid.Column="2" x:Name="ButtonState" Text="Off" HorizontalAlignment="Right" ></TextBlock>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true"/>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Trigger.EnterActions>
+                                <StopStoryboard BeginStoryboardName="ToggleOff_BeginStoryboard" />
+                                <BeginStoryboard x:Name="ToggleOn_BeginStoryboard" HandoffBehavior="SnapshotAndReplace" Storyboard="{StaticResource SliderToggleButton_On}">
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <StopStoryboard BeginStoryboardName="ToggleOn_BeginStoryboard" />
+                                <BeginStoryboard x:Name="ToggleOff_BeginStoryboard" HandoffBehavior="SnapshotAndReplace" Storyboard="{StaticResource SliderToggleButton_Off}">
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                            <Setter Property="Fill" TargetName="SlideRectangle" Value="{StaticResource ToggleButton.Checked.Fill}"/>
+                            <Setter Property="Text" TargetName="ButtonState" Value="On"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Foreground" TargetName="ButtonState" Value="{StaticResource ToggleButton.MouseOver.Fill}" />
+                            <Setter Property="BorderBrush" TargetName="FillBorder" Value="{StaticResource ToggleButton.MouseOver.Fill}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Fill" TargetName="SlideRectangle" Value="LightGray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+</ResourceDictionary>
